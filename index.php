@@ -1,4 +1,4 @@
-<? 
+<?
 /*
 	Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
@@ -14,7 +14,7 @@
 
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -78,21 +78,21 @@ include "includes/options_config.php";
 <div class="rounded-bottom">
 
     &nbsp;&nbsp;version <?=$mod_version?><br>
-    <? 
-    $isinstalled = exec("dpkg-query -s php5-curl|grep -iEe '^status.+installed'");
+    <?
+    $isinstalled = exec("dpkg-query -s php7.3-curl|grep -iEe '^status.+installed'");
     if ($isinstalled != "") {
         echo "$mod_alias <font style='color:lime'>installed</font><br>";
     } else {
         echo "$mod_alias <a href='includes/module_action.php?install=install_autostart' style='color:red'>install</a><br>";
     }
     ?>
-    
+
     <?
     $ismoduleup = exec("grep 'FruityWifi-autostart.php' /etc/rc.local");
     if ($ismoduleup != "") {
         echo "$mod_alias  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=responder&action=stop&page=module\"><b>stop</b></a>";
-    } else { 
-        echo "$mod_alias  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=responder&action=start&page=module\"><b>start</b></a>"; 
+    } else {
+        echo "$mod_alias  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=responder&action=start&page=module\"><b>start</b></a>";
     }
     ?>
 
@@ -114,7 +114,7 @@ Loading, please wait...
             <li><a href="#result-2">Options</a></li>
             <li><a href="#result-3">History</a></li>
         </ul>
-        
+
         <!-- OUTPUT -->
 
         <div id="result-1">
@@ -127,18 +127,18 @@ Loading, please wait...
                 } else {
                     $filename = $mod_logs;
                 }
-            
+
                 $data = open_file($filename);
-                
+
                 // REVERSE
                 //$data_array = explode("\n", $data);
                 //$data = implode("\n",array_reverse($data_array));
-                
+
             ?>
             <textarea id="output" class="module-content" style="font-family: courier;"><?=htmlspecialchars($data)?></textarea>
             <input type="hidden" name="type" value="logs">
             </form>
-            
+
         </div>
 
         <!-- OPTIONS -->
@@ -147,17 +147,17 @@ Loading, please wait...
             <form id="formInject" name="formInject" method="POST" autocomplete="off" action="includes/save.php">
             <input type="submit" value="save">
             <br><br>
-            
+
             <div class="module-options" s-tyle="background-color:#000; border:1px dashed;">
             <table>
-				
+
 				<?
 					$tmp = array_keys($opt_responder);
 					for ($i=0; $i< count($tmp); $i++) {
-						
+
 						$opt = "M".$i;
 						?>
-						
+
 						<tr>
 							<td><input type="checkbox" name="options[]" value="<?=$opt?>" <? if ($opt_responder[$opt][0] == "1") echo "checked" ?> ></td>
 							<td><?=$opt_responder[$opt][2]?></td>
@@ -166,7 +166,7 @@ Loading, please wait...
 				<?
 					}
 				?>
-				
+
             </table>
             </div>
 
@@ -175,11 +175,11 @@ Loading, please wait...
             <br>
             <?
                 $filename = "$mod_path/includes/mode_d.txt";
-                
+
                 $data = open_file($filename);
-                
+
             ?>
-            
+
         </div>
 
         <!-- HISTORY -->
@@ -187,7 +187,7 @@ Loading, please wait...
         <div id="result-3">
             <input type="submit" value="refresh">
             <br><br>
-            
+
             <?
             $logs = glob($mod_logs_history.'*.log');
             print_r($a);
@@ -200,9 +200,9 @@ Loading, please wait...
                 echo "<br>";
             }
             ?>
-            
+
         </div>
-        
+
     </div>
 
     <div id="loading" class="ui-widget" style="width:100%;background-color:#000; padding-top:4px; padding-bottom:4px;color:#FFF">
@@ -224,11 +224,11 @@ Loading, please wait...
                 $.each(data, function (index, value) {
                     $("#output").append( value ).append("\n");
                 });
-                
+
                 $('#loading').hide();
             }
         });
-        
+
         $('#output').html('');
         $('#loading').show()
 
@@ -255,12 +255,12 @@ Loading, please wait...
                         $("#output").append( value ).append("\n");
                     }
                 });
-                
+
                 $('#loading').hide();
 
             }
         });
-        
+
         $('#output').html('');
         $('#loading').show()
 
@@ -285,12 +285,12 @@ Loading, please wait...
                 $.each(data, function (index, value) {
                     $("#inject").append( value ).append("\n");
                 });
-                
+
                 $('#loading').hide();
-                
+
             }
         });
-        
+
         $('#output').html('');
         $('#loading').show()
 
@@ -317,7 +317,7 @@ Loading, please wait...
         echo "<script>";
         echo "$( '#result' ).tabs({ active: 4 });";
         echo "</script>";
-    } 
+    }
     ?>
 
 </div>
